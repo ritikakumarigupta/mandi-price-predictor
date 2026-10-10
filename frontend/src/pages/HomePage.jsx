@@ -186,18 +186,18 @@ export const HomePage = ({ onNavigateToDashboard }) => {
           transition={{ delay: 0.2 }}
           className="mt-8 md:mt-12 max-w-4xl mx-auto"
         >
-          <div className="glass-panel p-6 sm:p-8 rounded-3xl md:rounded-[32px] bg-white/75 dark:bg-slate-900/70 border border-white/50 dark:border-white/15 shadow-2xl backdrop-blur-2xl">
+          <div className="glass-panel p-6 sm:p-8 rounded-3xl md:rounded-[32px] bg-slate-900/85 border border-emerald-500/30 shadow-2xl backdrop-blur-2xl">
             {/* Header within search */}
-            <div className="flex items-center justify-between pb-6 mb-6 border-b border-slate-200/50 dark:border-white/10">
+            <div className="flex items-center justify-between pb-6 mb-6 border-b border-emerald-500/20">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold shadow-md">
                   <Compass className="w-5 h-5" />
                 </div>
                 <div>
-                  <h2 className="text-lg font-bold text-slate-900 dark:text-white">
+                  <h2 className="text-lg font-bold text-white">
                     {lang === 'hi' ? 'मंडी भाव व भविष्यवाणी खोजें' : 'Select Location & Crop'}
                   </h2>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">
+                  <p className="text-xs text-slate-300">
                     {lang === 'hi' ? 'सटीक परिणाम पाने के लिए अपनी नज़दीकी मंडी चुनें' : 'Choose your nearest APMC for tailored AI forecasts'}
                   </p>
                 </div>
@@ -210,7 +210,7 @@ export const HomePage = ({ onNavigateToDashboard }) => {
                 className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold cursor-pointer border transition-all ${
                   isListening
                     ? 'bg-rose-500 text-white border-rose-400 animate-pulse'
-                    : 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30 hover:bg-emerald-500/20'
+                    : 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40 hover:bg-emerald-500/30'
                 }`}
                 title="Voice Search in Hindi/English"
               >
@@ -220,7 +220,7 @@ export const HomePage = ({ onNavigateToDashboard }) => {
             </div>
 
             {speechFeedback && (
-              <div className="mb-4 text-xs font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-3 py-2 rounded-xl border border-emerald-500/20">
+              <div className="mb-4 text-xs font-medium text-emerald-300 bg-emerald-500/20 px-3 py-2 rounded-xl border border-emerald-500/40">
                 {speechFeedback}
               </div>
             )}
@@ -229,7 +229,7 @@ export const HomePage = ({ onNavigateToDashboard }) => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {/* State Dropdown */}
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+                <label className="text-xs font-bold uppercase tracking-wider text-emerald-400">
                   {t.hero.selectState}
                 </label>
                 <div className="relative">
@@ -249,14 +249,14 @@ export const HomePage = ({ onNavigateToDashboard }) => {
 
               {/* District Dropdown */}
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+                <label className="text-xs font-bold uppercase tracking-wider text-emerald-400">
                   {t.hero.selectDistrict}
                 </label>
                 <div className="relative">
                   <select
                     value={selectedDistrict}
                     onChange={(e) => setSelectedDistrict(e.target.value)}
-                    className="w-full min-h-[48px] px-3.5 py-2.5 rounded-2xl glass-panel bg-white/70 dark:bg-slate-800/60 border border-slate-300/60 dark:border-white/10 text-slate-900 dark:text-white font-medium text-sm appearance-none focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+                    className="w-full min-h-[48px] px-3.5 py-2.5 rounded-2xl bg-slate-800/90 border border-emerald-500/30 text-white font-medium text-sm appearance-none focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20"
                   >
                     {districts.map((d) => (
                       <option key={d.id} value={d.id} className="bg-slate-900 text-white">
@@ -269,14 +269,14 @@ export const HomePage = ({ onNavigateToDashboard }) => {
 
               {/* Mandi Dropdown */}
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+                <label className="text-xs font-bold uppercase tracking-wider text-emerald-400">
                   {t.hero.selectMandi}
                 </label>
                 <div className="relative">
                   <select
                     value={selectedMandi}
                     onChange={(e) => setSelectedMandi(e.target.value)}
-                    className="w-full min-h-[48px] px-3.5 py-2.5 rounded-2xl glass-panel bg-white/70 dark:bg-slate-800/60 border border-slate-300/60 dark:border-white/10 text-slate-900 dark:text-white font-medium text-sm appearance-none focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+                    className="w-full min-h-[48px] px-3.5 py-2.5 rounded-2xl bg-slate-800/90 border border-emerald-500/30 text-white font-medium text-sm appearance-none focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20"
                   >
                     {mandis.map((m) => (
                       <option key={m.id} value={m.id} className="bg-slate-900 text-white">
@@ -289,14 +289,14 @@ export const HomePage = ({ onNavigateToDashboard }) => {
 
               {/* Crop Dropdown */}
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+                <label className="text-xs font-bold uppercase tracking-wider text-emerald-400">
                   {t.hero.selectCrop}
                 </label>
                 <div className="relative">
                   <select
                     value={selectedCrop}
                     onChange={(e) => setSelectedCrop(e.target.value)}
-                    className="w-full min-h-[48px] px-3.5 py-2.5 rounded-2xl glass-panel bg-white/70 dark:bg-slate-800/60 border border-slate-300/60 dark:border-white/10 text-slate-900 dark:text-white font-medium text-sm appearance-none focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+                    className="w-full min-h-[48px] px-3.5 py-2.5 rounded-2xl bg-slate-800/90 border border-emerald-500/30 text-white font-medium text-sm appearance-none focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20"
                   >
                     {crops.map((c) => (
                       <option key={c.id} value={c.id} className="bg-slate-900 text-white">
