@@ -161,10 +161,10 @@ export const HomePage = ({ onNavigateToDashboard }) => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-6xl font-heading font-black tracking-tight text-slate-900 dark:text-white leading-[1.15]"
+            className="text-4xl sm:text-5xl md:text-6xl font-heading font-black tracking-tight text-white drop-shadow-sm leading-[1.15]"
           >
             {t.hero.title1}{' '}
-            <span className="bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent">
               {t.hero.title2}
             </span>
           </motion.h1>
@@ -173,7 +173,7 @@ export const HomePage = ({ onNavigateToDashboard }) => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 }}
-            className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto font-normal leading-relaxed"
+            className="text-base sm:text-lg text-slate-200 dark:text-slate-200 max-w-2xl mx-auto font-normal leading-relaxed drop-shadow-sm"
           >
             {t.hero.subtitle}
           </motion.p>
