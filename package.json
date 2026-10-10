@@ -1,0 +1,14 @@
+{
+  "name": "mandisetu-fullstack",
+  "version": "1.0.0",
+  "description": "Mandi Price Predictor and Advisory Platform for Farmers",
+  "scripts": {
+    "dev:backend": "python -m uvicorn backend.app.main:app --port 8000 --reload",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "dev": "concurrently -n \"BACKEND,FRONTEND\" -c \"cyan,green\" \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "build": "npm run build --prefix frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
