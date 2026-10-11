@@ -88,11 +88,13 @@ function AppContent() {
         onSelect={handleCommandSelect}
       />
 
-      {/* Professional Government Resources Footer */}
-      <GovernmentFooter onNavigateTab={(tab) => {
-        setActiveTab(tab);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }} />
+      {/* Professional Government Resources Footer (Only on Home Page) */}
+      {activeTab === 'home' && (
+        <GovernmentFooter onNavigateTab={(tab) => {
+          setActiveTab(tab);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }} />
+      )}
     </div>
   );
 }

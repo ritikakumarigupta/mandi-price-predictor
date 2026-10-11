@@ -5,15 +5,37 @@ import { GlassCard } from '../components/common/GlassCard';
 import { Navigation, Award, Fuel, Filter, MapPin, LocateFixed, Edit3 } from 'lucide-react';
 import { useLanguage } from '../hooks/useLanguage';
 
-// Custom Pin Icon
-const pinIcon = new L.Icon({
-  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-});
+// Robust Glowing SVG Marker Icon that doesn't depend on external assets
+const createCustomMandiIcon = (isBest) => {
+  return L.divIcon({
+    className: 'custom-mandi-pin',
+    html: `
+      <div style="position: relative; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;">
+        <div style="position: absolute; width: 28px; height: 28px; border-radius: 50%; background: ${isBest ? '#F59E0B' : '#10B981'}; opacity: 0.35; animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;"></div>
+        <div style="position: relative; width: 22px; height: 22px; border-radius: 50%; background: ${isBest ? '#D97706' : '#059669'}; border: 2.5px solid #FFFFFF; box-shadow: 0 4px 10px rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; color: white; font-size: 11px; font-weight: 900;">
+          ${isBest ? '★' : '₹'}
+        </div>
+      </div>
+    `,
+    iconSize: [32, 32],
+    iconAnchor: [16, 16],
+    popupAnchor: [0, -18],
+  });
+};
+
+// Component to invalidate map size when mounted or state changes
+function MapInvalidator({ center }) {
+  const map = useMap();
+  React.useEffect(() => {
+    setTimeout(() => {
+      map.invalidateSize();
+      if (center) {
+        map.setView(center, map.getZoom(), { animate: true });
+      }
+    }, 250);
+  }, [map, center]);
+  return null;
+}
 
 // Calculate distance using Haversine formula
 function calculateHaversineDistance(lat1, lon1, lat2, lon2) {
@@ -219,12 +241,13 @@ export const NearbyMandiPage = () => {
         {/* All-India Leaflet Map */}
         <div className="lg:col-span-7 h-[420px] lg:h-[540px] rounded-3xl overflow-hidden glass-panel border border-white/20 shadow-2xl relative z-10">
           <MapContainer center={[23.8, 82.5]} zoom={5} scrollWheelZoom={true} className="h-full w-full">
+            <MapInvalidator center={[23.8, 82.5]} />
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
             {filteredMandis.map((m) => (
-              <Marker key={m.id} position={[m.lat, m.lng]} icon={pinIcon}>
+              <Marker key={m.id} position={[m.lat, m.lng]} icon={createCustomMandiIcon(m.isBest)}>
                 <Popup>
                   <div className="text-xs p-1 space-y-1">
                     <span className="text-[10px] font-bold uppercase px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800">

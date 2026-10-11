@@ -61,22 +61,43 @@ export const GlassNavbar = ({ activeTab, onSelectTab, onOpenCommandPalette }) =>
           </div>
         </div>
 
-        {/* Desktop Navigation Links - Emerald Glow Hover without White Flash */}
-        <div className="hidden lg:flex items-center gap-1.5 bg-black/30 p-1.5 rounded-2xl border border-emerald-500/15">
+        {/* Desktop Navigation Links - Compact, Sleek, No-Wrap */}
+        <div className="hidden xl:flex items-center gap-1 bg-black/40 p-1 rounded-2xl border border-emerald-500/20">
           {navItems.map((item) => {
             const isActive = activeTab === item.id;
             return (
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`px-3.5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 flex items-center gap-1.5 cursor-pointer ${
+                className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 flex items-center gap-1.5 cursor-pointer shrink-0 ${
                   isActive
                     ? 'bg-emerald-500 text-white font-bold shadow-md shadow-emerald-500/30 border border-emerald-400/40'
                     : 'text-slate-200 hover:text-emerald-300 hover:bg-emerald-500/15'
                 }`}
               >
-                {item.icon && <item.icon className="w-4 h-4 opacity-90" />}
-                {item.label}
+                {item.icon && <item.icon className="w-3.5 h-3.5 opacity-90" />}
+                <span>{item.label}</span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Medium Screen Compact Navigation (lg to xl) */}
+        <div className="hidden lg:flex xl:hidden items-center gap-1 bg-black/40 p-1 rounded-2xl border border-emerald-500/20">
+          {navItems.slice(0, 5).map((item) => {
+            const isActive = activeTab === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => handleNavClick(item.id)}
+                className={`px-2.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 flex items-center gap-1 cursor-pointer shrink-0 ${
+                  isActive
+                    ? 'bg-emerald-500 text-white font-bold shadow-md shadow-emerald-500/30'
+                    : 'text-slate-200 hover:text-emerald-300 hover:bg-emerald-500/15'
+                }`}
+              >
+                {item.icon && <item.icon className="w-3.5 h-3.5 opacity-90" />}
+                <span>{item.label}</span>
               </button>
             );
           })}
