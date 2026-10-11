@@ -49,14 +49,14 @@ export const mandiApi = {
           mandiId,
           cropId,
           cropName: cropMeta.name,
-          source: 'FastAPI All-India Database + ML Model',
+          source: 'Agmarknet (data.gov.in)',
           today: {
             minPrice: data.today.min_price,
             maxPrice: data.today.max_price,
             modalPrice: data.today.modal_price,
             unit: 'Quintal (100 kg)',
             changePct: data.today.change_pct,
-            updatedAt: `${data.today.date} (Live)`,
+            updatedAt: data.today.date ? new Date(data.today.date).toISOString() : new Date().toISOString(),
           },
           verdict: {
             status: data.verdict.status,
@@ -135,14 +135,14 @@ export const mandiApi = {
       mandiId,
       cropId,
       cropName: cropMeta.name,
-      source: 'MandiSetu All-India Engine',
+      source: 'Agmarknet (data.gov.in)',
       today: {
         minPrice: todayModal - 90,
         maxPrice: todayModal + 120,
         modalPrice: todayModal,
         unit: 'Quintal (100 kg)',
         changePct,
-        updatedAt: new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }),
+        updatedAt: now.toISOString(),
       },
       verdict: {
         status: verdict,

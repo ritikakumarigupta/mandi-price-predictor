@@ -27,13 +27,22 @@ export const HomePage = ({ onNavigateToDashboard }) => {
   const [crops, setCrops] = useState([]);
   const [ticker, setTicker] = useState([]);
 
-  const [selectedState, setSelectedState] = useState('BR');
-  const [selectedDistrict, setSelectedDistrict] = useState('patna');
-  const [selectedMandi, setSelectedMandi] = useState('patna_city');
-  const [selectedCrop, setSelectedCrop] = useState('wheat');
+  // Load preferences from localStorage (Prompt 11: Save Preferences)
+  const [selectedState, setSelectedState] = useState(() => localStorage.getItem('mf_state') || 'BR');
+  const [selectedDistrict, setSelectedDistrict] = useState(() => localStorage.getItem('mf_district') || 'patna');
+  const [selectedMandi, setSelectedMandi] = useState(() => localStorage.getItem('mf_mandi') || 'patna_city');
+  const [selectedCrop, setSelectedCrop] = useState(() => localStorage.getItem('mf_crop') || 'wheat');
 
   const [isListening, setIsListening] = useState(false);
   const [speechFeedback, setSpeechFeedback] = useState('');
+
+  // Persist selections
+  useEffect(() => {
+    localStorage.setItem('mf_state', selectedState);
+    localStorage.setItem('mf_district', selectedDistrict);
+    localStorage.setItem('mf_mandi', selectedMandi);
+    localStorage.setItem('mf_crop', selectedCrop);
+  }, [selectedState, selectedDistrict, selectedMandi, selectedCrop]);
 
   useEffect(() => {
     // Load metadata
@@ -224,6 +233,45 @@ export const HomePage = ({ onNavigateToDashboard }) => {
                 {speechFeedback}
               </div>
             )}
+
+            {/* "Meri Fasal" Quick-Select Chips (Prompt 11) */}
+            <div className="mb-6 pb-4 border-b border-emerald-500/15">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-bold text-slate-300 flex items-center gap-1.5">
+                  <Sprout className="w-3.5 h-3.5 text-emerald-400" />
+                  {lang === 'hi' ? 'मेरी फसल (त्वरित चयन)' : 'My Crops (Quick Select)'}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    localStorage.removeItem('mf_crop');
+                    localStorage.removeItem('mf_state');
+                    setSelectedCrop('wheat');
+                    setSelectedState('BR');
+                  }}
+                  className="text-[11px] text-slate-400 hover:text-rose-400 transition-colors"
+                >
+                  {lang === 'hi' ? 'रीसेट करें' : 'Reset'}
+                </button>
+              </div>
+              <div className="flex gap-2 flex-wrap">
+                {crops.map((c) => (
+                  <button
+                    key={c.id}
+                    type="button"
+                    onClick={() => setSelectedCrop(c.id)}
+                    className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 border ${
+                      selectedCrop === c.id
+                        ? 'bg-emerald-500 text-white border-emerald-400 shadow-md shadow-emerald-500/25'
+                        : 'bg-black/30 text-slate-300 border-white/10 hover:border-emerald-500/40 hover:bg-emerald-500/10'
+                    }`}
+                  >
+                    <span>{c.icon}</span>
+                    <span>{c.name.split(' ')[0]}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
 
             {/* Cascading 4-Field Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

@@ -19,6 +19,8 @@ import { GlassCard } from '../components/common/GlassCard';
 import { GlassButton } from '../components/common/GlassButton';
 import { PriceCard } from '../components/common/PriceCard';
 import { VerdictBadge } from '../components/common/VerdictBadge';
+import { DataSourceBadge, isOlderThan24Hours } from '../components/common/DataSourceBadge';
+import { StorageCalculator } from '../components/common/StorageCalculator';
 
 export const DashboardPage = ({ searchParams, onBack }) => {
   const { t, lang } = useLanguage();
@@ -111,18 +113,17 @@ export const DashboardPage = ({ searchParams, onBack }) => {
             <ArrowLeft className="w-5 h-5" />
           </button>
           <div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs uppercase font-extrabold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-xs uppercase font-extrabold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400">
                 APMC Verified
               </span>
-              <span className="text-xs px-2.5 py-0.5 rounded-full bg-teal-500/20 text-teal-600 dark:text-teal-400 font-semibold">
-                {data?.source || 'FastAPI Connected'}
-              </span>
-              <span className="text-xs text-slate-500 dark:text-slate-400">
-                Updated {data?.today?.updatedAt}
-              </span>
+              <DataSourceBadge
+                source={data?.source || 'Agmarknet (data.gov.in)'}
+                timestamp={data?.today?.updatedAt}
+                lang={lang}
+              />
             </div>
-            <h1 className="text-2xl sm:text-3xl font-heading font-extrabold text-slate-900 dark:text-white">
+            <h1 className="text-2xl sm:text-3xl font-heading font-extrabold text-white mt-1">
               {data?.cropName} — Rate Dashboard
             </h1>
           </div>
@@ -163,6 +164,23 @@ export const DashboardPage = ({ searchParams, onBack }) => {
           </button>
         </div>
       </div>
+
+      {/* Stale Data Warning Banner (> 24 hours old) */}
+      {isOlderThan24Hours(data?.today?.updatedAt) && (
+        <div className="p-4 rounded-2xl bg-amber-500/15 border border-amber-500/40 text-amber-200 flex items-center gap-3 backdrop-blur-md">
+          <span className="text-xl">⚠️</span>
+          <div>
+            <h4 className="font-bold text-sm text-amber-100">
+              {lang === 'hi' ? 'यह डेटा पुराना हो सकता है (24 घंटे से अधिक)' : 'This data might be outdated (> 24 hours)'}
+            </h4>
+            <p className="text-xs text-amber-300/90 mt-0.5">
+              {lang === 'hi' 
+                ? 'सरकारी मंडी आज बंद हो सकती है या नया डेटा अभी तक अपलोड नहीं हुआ है। कृपया अंतिम अपडेट समय देखें।'
+                : 'The APMC mandi might be closed or latest trade arrivals have not been uploaded to data.gov.in yet.'}
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* 3 Price Cards (Min, Modal, Max) */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -221,6 +239,13 @@ export const DashboardPage = ({ searchParams, onBack }) => {
           ))}
         </div>
       </GlassCard>
+
+      {/* Storage vs Sell-Now Calculator (Prompt 12) */}
+      <StorageCalculator
+        todayPrice={data?.today?.modalPrice || 2480}
+        forecastPrice={data?.verdict?.targetPrice || 2600}
+        lang={lang}
+      />
     </div>
   );
 };
