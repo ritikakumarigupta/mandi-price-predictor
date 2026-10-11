@@ -254,19 +254,27 @@ export const HomePage = ({ onNavigateToDashboard }) => {
                   {lang === 'hi' ? 'रीसेट करें' : 'Reset'}
                 </button>
               </div>
-              <div className="flex gap-2 flex-wrap">
+              <div className="flex gap-2.5 overflow-x-auto pb-2 scrollbar-none">
                 {crops.map((c) => (
                   <button
                     key={c.id}
                     type="button"
                     onClick={() => setSelectedCrop(c.id)}
-                    className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 border ${
+                    className={`px-3 py-2 rounded-2xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 border shrink-0 ${
                       selectedCrop === c.id
-                        ? 'bg-emerald-500 text-white border-emerald-400 shadow-md shadow-emerald-500/25'
-                        : 'bg-black/30 text-slate-300 border-white/10 hover:border-emerald-500/40 hover:bg-emerald-500/10'
+                        ? 'bg-emerald-500 text-white border-emerald-400 shadow-lg shadow-emerald-500/30'
+                        : 'bg-slate-800/80 text-slate-200 border-white/10 hover:border-emerald-500/40 hover:bg-slate-800'
                     }`}
                   >
-                    <span>{c.icon}</span>
+                    {c.image ? (
+                      <img 
+                        src={c.image} 
+                        alt={c.name} 
+                        className="w-5 h-5 rounded-full object-cover border border-white/30"
+                      />
+                    ) : (
+                      <span>{c.icon}</span>
+                    )}
                     <span>{c.name.split(' ')[0]}</span>
                   </button>
                 ))}

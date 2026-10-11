@@ -63,8 +63,16 @@ export const CommandPalette = ({ isOpen, onClose, onSelect }) => {
               className="flex items-center justify-between p-3 rounded-2xl hover:bg-emerald-500/10 hover:text-emerald-500 cursor-pointer transition-colors group"
             >
               <div className="flex items-center gap-3">
-                <span className="text-xl">{crop.icon}</span>
-                <span className="text-sm font-semibold text-slate-800 dark:text-slate-200 group-hover:text-emerald-500">
+                {crop.image ? (
+                  <img 
+                    src={crop.image} 
+                    alt={crop.name} 
+                    className="w-7 h-7 rounded-xl object-cover border border-emerald-500/30 shrink-0" 
+                  />
+                ) : (
+                  <span className="text-xl">{crop.icon}</span>
+                )}
+                <span className="text-sm font-semibold text-slate-200 group-hover:text-emerald-400">
                   {crop.name}
                 </span>
               </div>

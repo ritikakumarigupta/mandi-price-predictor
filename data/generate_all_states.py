@@ -67,7 +67,10 @@ STATES_DATA = [
     }
 ]
 
-CROPS = ["Wheat", "Paddy", "Onion", "Potato", "Mustard", "Maize"]
+CROPS = [
+    "Wheat", "Paddy", "Onion", "Potato", "Mustard", "Maize",
+    "Tomato", "Garlic", "Chana", "Soyabean", "Cotton", "Sugarcane"
+]
 
 BASE_RATES = {
     "Wheat": 2450,
@@ -76,6 +79,12 @@ BASE_RATES = {
     "Potato": 1420,
     "Mustard": 5350,
     "Maize": 2150,
+    "Tomato": 2100,
+    "Garlic": 9400,
+    "Chana": 5850,
+    "Soyabean": 4650,
+    "Cotton": 7100,
+    "Sugarcane": 380,
 }
 
 def generate_all_india_mandi_data(days=365):

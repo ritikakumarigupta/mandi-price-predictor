@@ -124,13 +124,104 @@ export const MOCK_MANDIS = {
   ],
 };
 
+// All Major Agmarknet / data.gov.in Commodities with HD Web Imagery
 export const MOCK_CROPS = [
-  { id: 'wheat', name: 'Wheat (गेहूं)', category: 'Cereals', basePrice: 2450, icon: '🌾' },
-  { id: 'paddy', name: 'Paddy / Rice (धान / चावल)', category: 'Cereals', basePrice: 2280, icon: '🍚' },
-  { id: 'onion', name: 'Onion (प्याज)', category: 'Vegetables', basePrice: 1850, icon: '🧅' },
-  { id: 'potato', name: 'Potato (आलू)', category: 'Vegetables', basePrice: 1420, icon: '🥔' },
-  { id: 'mustard', name: 'Mustard (सरसों)', category: 'Oilseeds', basePrice: 5350, icon: '🌻' },
-  { id: 'maize', name: 'Maize (मक्का)', category: 'Cereals', basePrice: 2150, icon: '🌽' },
+  { 
+    id: 'wheat', 
+    name: 'Wheat (गेहूं)', 
+    category: 'Cereals', 
+    basePrice: 2450, 
+    icon: '🌾',
+    image: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=400&q=80'
+  },
+  { 
+    id: 'paddy', 
+    name: 'Paddy / Rice (धान / चावल)', 
+    category: 'Cereals', 
+    basePrice: 2280, 
+    icon: '🍚',
+    image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=400&q=80'
+  },
+  { 
+    id: 'onion', 
+    name: 'Onion (प्याज)', 
+    category: 'Vegetables', 
+    basePrice: 1850, 
+    icon: '🧅',
+    image: 'https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?auto=format&fit=crop&w=400&q=80'
+  },
+  { 
+    id: 'potato', 
+    name: 'Potato (आलू)', 
+    category: 'Vegetables', 
+    basePrice: 1420, 
+    icon: '🥔',
+    image: 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=400&q=80'
+  },
+  { 
+    id: 'mustard', 
+    name: 'Mustard (सरसों)', 
+    category: 'Oilseeds', 
+    basePrice: 5350, 
+    icon: '🌻',
+    image: 'https://images.unsplash.com/photo-1534073828943-f801091bb18c?auto=format&fit=crop&w=400&q=80'
+  },
+  { 
+    id: 'maize', 
+    name: 'Maize (मक्का)', 
+    category: 'Cereals', 
+    basePrice: 2150, 
+    icon: '🌽',
+    image: 'https://images.unsplash.com/photo-1551754655-cd27e38d2076?auto=format&fit=crop&w=400&q=80'
+  },
+  { 
+    id: 'tomato', 
+    name: 'Tomato (टमाटर)', 
+    category: 'Vegetables', 
+    basePrice: 2100, 
+    icon: '🍅',
+    image: 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=400&q=80'
+  },
+  { 
+    id: 'garlic', 
+    name: 'Garlic (लहसुन)', 
+    category: 'Spices', 
+    basePrice: 9400, 
+    icon: '🧄',
+    image: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=400&q=80'
+  },
+  { 
+    id: 'gram', 
+    name: 'Bengal Gram / Chana (चना)', 
+    category: 'Pulses', 
+    basePrice: 5850, 
+    icon: '🫘',
+    image: 'https://images.unsplash.com/photo-1515543237350-b3eea1ec8082?auto=format&fit=crop&w=400&q=80'
+  },
+  { 
+    id: 'soyabean', 
+    name: 'Soyabean (सोयाबीन)', 
+    category: 'Oilseeds', 
+    basePrice: 4650, 
+    icon: '🌱',
+    image: 'https://images.unsplash.com/photo-1599305090598-fe179d501227?auto=format&fit=crop&w=400&q=80'
+  },
+  { 
+    id: 'cotton', 
+    name: 'Cotton (कपास)', 
+    category: 'Commercial', 
+    basePrice: 7100, 
+    icon: '☁️',
+    image: 'https://images.unsplash.com/photo-1606041008023-472dfb5e530f?auto=format&fit=crop&w=400&q=80'
+  },
+  { 
+    id: 'sugarcane', 
+    name: 'Sugarcane (गन्ना)', 
+    category: 'Commercial', 
+    basePrice: 380, 
+    icon: '🎋',
+    image: 'https://images.unsplash.com/photo-1527842891421-42eec6e703ea?auto=format&fit=crop&w=400&q=80'
+  },
 ];
 
 export const MOCK_TICKER = [
@@ -138,5 +229,6 @@ export const MOCK_TICKER = [
   { crop: 'Paddy', cropHi: 'धान', price: '₹2,320/q', change: '+1.5%', up: true, mandi: 'Ludhiana' },
   { crop: 'Onion', cropHi: 'प्याज', price: '₹1,940/q', change: '-4.2%', up: false, mandi: 'Lasalgaon' },
   { crop: 'Mustard', cropHi: 'सरसों', price: '₹5,410/q', change: '+2.8%', up: true, mandi: 'Kota' },
-  { crop: 'Potato', cropHi: 'आलू', price: '₹1,430/q', change: '+0.5%', up: true, mandi: 'Indore' },
+  { crop: 'Chana', cropHi: 'चना', price: '₹5,850/q', change: '+1.9%', up: true, mandi: 'Indore' },
+  { crop: 'Garlic', cropHi: 'लहसुन', price: '₹9,400/q', change: '+5.1%', up: true, mandi: 'Jaipur' },
 ];

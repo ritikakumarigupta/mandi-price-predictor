@@ -123,9 +123,20 @@ export const DashboardPage = ({ searchParams, onBack }) => {
                 lang={lang}
               />
             </div>
-            <h1 className="text-2xl sm:text-3xl font-heading font-extrabold text-white mt-1">
-              {data?.cropName} — Rate Dashboard
-            </h1>
+            <div className="flex items-center gap-3 mt-1.5">
+              {data?.cropImage ? (
+                <img 
+                  src={data.cropImage} 
+                  alt={data.cropName} 
+                  className="w-10 h-10 md:w-12 md:h-12 rounded-2xl object-cover border-2 border-emerald-400/50 shadow-lg shrink-0"
+                />
+              ) : (
+                <span className="text-3xl">{data?.cropIcon || '🌾'}</span>
+              )}
+              <h1 className="text-2xl sm:text-3xl font-heading font-extrabold text-white">
+                {data?.cropName} — Rate Dashboard
+              </h1>
+            </div>
           </div>
         </div>
 

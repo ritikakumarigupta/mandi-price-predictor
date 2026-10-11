@@ -49,6 +49,8 @@ export const mandiApi = {
           mandiId,
           cropId,
           cropName: cropMeta.name,
+          cropImage: cropMeta.image,
+          cropIcon: cropMeta.icon,
           source: 'Agmarknet (data.gov.in)',
           today: {
             minPrice: data.today.min_price,
@@ -135,6 +137,8 @@ export const mandiApi = {
       mandiId,
       cropId,
       cropName: cropMeta.name,
+      cropImage: cropMeta.image,
+      cropIcon: cropMeta.icon,
       source: 'Agmarknet (data.gov.in)',
       today: {
         minPrice: todayModal - 90,
