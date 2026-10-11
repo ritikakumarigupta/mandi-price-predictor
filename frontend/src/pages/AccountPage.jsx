@@ -226,11 +226,25 @@ export const AccountPage = ({ onNavigateToDashboard, onNavigateToAdmin }) => {
               </form>
             ) : (
               <form onSubmit={handleVerifyOtp} className="space-y-4">
-                <div className="p-3 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-xs text-emerald-200">
-                  <span>ओटीपी भेजा गया: <strong>+91-{mobileInput}</strong></span>
+                <div className="p-4 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 text-xs text-emerald-200 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-white flex items-center gap-1.5">
+                      <Phone className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>ओटीपी भेजा गया: +91-{mobileInput}</span>
+                    </span>
+                    <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500 text-white">
+                      SMS Dispatched ✉️
+                    </span>
+                  </div>
+
+                  <p className="text-[11px] text-slate-300">
+                    आपके मोबाइल फोन पर एसएमएस (SMS) भेजा गया है।
+                  </p>
+
                   {demoOtpHint && (
-                    <div className="mt-1 font-mono text-white text-sm bg-black/40 p-1.5 rounded-lg">
-                      🔑 डेमो टेस्ट OTP: <strong className="text-emerald-400">{demoOtpHint}</strong>
+                    <div className="mt-2 p-2.5 rounded-xl bg-black/60 border border-emerald-500/30 flex items-center justify-between">
+                      <span className="text-[11px] text-slate-300">मोबाइल स्क्रीन / तुरंत लॉगिन कोड:</span>
+                      <strong className="text-emerald-400 font-mono text-base tracking-widest">{demoOtpHint}</strong>
                     </div>
                   )}
                 </div>

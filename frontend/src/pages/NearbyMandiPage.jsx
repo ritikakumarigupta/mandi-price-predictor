@@ -170,69 +170,74 @@ export const NearbyMandiPage = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      {/* Top Header Card */}
+      <div className="p-6 rounded-3xl glass-panel bg-slate-900/85 border border-emerald-500/25 shadow-2xl backdrop-blur-xl flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-semibold">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-400 text-xs font-semibold mb-2">
             <Navigation className="w-3.5 h-3.5" />
             <span>All-India Mandi Geo-Mapping (8 States)</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-heading font-extrabold text-slate-900 dark:text-white mt-1">
-            {t.nav.nearby}
+          <h1 className="text-2xl sm:text-3xl font-heading font-black text-white">
+            {lang === 'hi' ? 'अखिल भारतीय मंडी नक्शा व परिवहन विश्लेषण' : 'All-India Mandi GIS Map & Profit Route'}
           </h1>
-          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-            Interactive GIS map covering mandis in Jharkhand, Bihar, UP, Punjab, Haryana, Maharashtra, MP & Rajasthan.
+          <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl">
+            {lang === 'hi' 
+              ? 'बिहार, यूपी, झारखंड, पंजाब, हरियाणा, महाराष्ट्र, मध्य प्रदेश व राजस्थान की मंडियों का लाइव नक्शा।' 
+              : 'Interactive GIS map covering regulated APMC mandis across 8 states with dynamic net profit calculation.'}
           </p>
         </div>
 
-        {/* State Filter Pills & GPS Geolocation Bar */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+        {/* GPS Location & Transport Rate Tools */}
+        <div className="flex flex-wrap items-center gap-3">
           <button
             onClick={handleGetLocation}
             disabled={locating}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-bold hover:bg-emerald-500/30 transition-all cursor-pointer shrink-0"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-white text-xs font-bold shadow-lg shadow-emerald-500/30 transition-all cursor-pointer"
           >
-            <LocateFixed className={`w-3.5 h-3.5 ${locating ? 'animate-spin' : ''}`} />
-            <span>{locating ? 'खोज रहा है...' : 'मेरा GPS स्थान'}</span>
+            <LocateFixed className={`w-4 h-4 ${locating ? 'animate-spin' : ''}`} />
+            <span>{locating ? 'GPS खोज रहा है...' : 'मेरा GPS स्थान'}</span>
           </button>
 
           {/* Transport Cost Editor */}
-          <div className="flex items-center gap-1.5 px-3 py-1 rounded-xl glass-panel bg-white/10 border border-white/10 text-xs">
-            <Fuel className="w-3.5 h-3.5 text-amber-400" />
+          <div className="flex items-center gap-2 px-3.5 py-2 rounded-2xl glass-panel bg-black/40 border border-emerald-500/30 text-xs">
+            <Fuel className="w-4 h-4 text-amber-400" />
             <span className="text-slate-300">किराया: ₹</span>
             <input
               type="number"
               step="0.5"
               value={costPerKm}
               onChange={(e) => setCostPerKm(Number(e.target.value) || 1)}
-              className="w-12 bg-transparent text-emerald-400 font-bold focus:outline-none"
+              className="w-12 bg-transparent text-emerald-400 font-extrabold focus:outline-none"
             />
             <span className="text-slate-400">/किमी</span>
-          </div>
-
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 max-w-full">
-            <Filter className="w-4 h-4 text-emerald-500 shrink-0 mr-1" />
-            {availableStates.map(st => (
-              <button
-                key={st}
-                onClick={() => setSelectedStateFilter(st)}
-                className={`px-3 py-1 text-xs font-bold rounded-xl whitespace-nowrap transition-all cursor-pointer ${
-                  selectedStateFilter === st
-                    ? 'bg-emerald-500 text-white shadow-md'
-                    : 'glass-panel bg-white/40 dark:bg-slate-900/60 text-slate-700 dark:text-slate-300'
-                }`}
-              >
-                {st === 'ALL' ? 'All States (सभी)' : st}
-              </button>
-            ))}
           </div>
         </div>
       </div>
 
+      {/* State Filter Buttons Strip */}
+      <div className="p-3 rounded-2xl glass-panel bg-black/30 border border-emerald-500/20 flex items-center gap-2 overflow-x-auto scrollbar-none">
+        <Filter className="w-4 h-4 text-emerald-400 shrink-0 ml-1" />
+        <span className="text-xs font-bold text-slate-400 uppercase tracking-wider shrink-0 mr-1">राज्य:</span>
+        {availableStates.map(st => (
+          <button
+            key={st}
+            onClick={() => setSelectedStateFilter(st)}
+            className={`px-3.5 py-1.5 text-xs font-bold rounded-xl whitespace-nowrap transition-all cursor-pointer shrink-0 ${
+              selectedStateFilter === st
+                ? 'bg-emerald-500 text-white shadow-md shadow-emerald-500/30 border border-emerald-400/40'
+                : 'bg-slate-800/80 text-slate-300 hover:text-white hover:bg-slate-800'
+            }`}
+          >
+            {st === 'ALL' ? 'सभी राज्य (All States)' : st}
+          </button>
+        ))}
+      </div>
+
       {locationStatus && (
-        <div className="text-xs px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 flex items-center gap-2">
-          <MapPin className="w-3.5 h-3.5 text-emerald-400" />
+        <div className="text-xs px-4 py-2 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 flex items-center gap-2">
+          <MapPin className="w-4 h-4 text-emerald-400" />
           <span>{locationStatus}</span>
-          {userLocation?.name && <span className="font-bold">({userLocation.name})</span>}
+          {userLocation?.name && <span className="font-bold text-white">({userLocation.name})</span>}
         </div>
       )}
 
