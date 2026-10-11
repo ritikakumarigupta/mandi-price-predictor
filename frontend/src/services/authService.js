@@ -168,6 +168,49 @@ export const authService = {
     return user;
   },
 
+  loginWithGoogle: async (googleUser = null) => {
+    // Default simulated Google profile or user-provided Google OAuth payload
+    const profile = googleUser || {
+      id: 'goog_' + Date.now(),
+      email: 'kisan.setu.user@gmail.com',
+      name: 'किसान मित्र (Google User)',
+      avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80',
+    };
+
+    const existingUsers = JSON.parse(localStorage.getItem('mandisetu_registered_users') || '{}');
+    const userKey = profile.email || profile.id;
+    let user = existingUsers[userKey];
+
+    if (!user) {
+      user = {
+        id: profile.id,
+        authProvider: 'google',
+        email: profile.email,
+        name: profile.name,
+        avatar: profile.avatar,
+        maskedMobile: 'Google Account',
+        mobile: '9876540001',
+        role: USER_ROLES.FARMER,
+        state: 'Bihar',
+        district: 'Patna',
+        village: 'Danapur',
+        preferredLanguage: 'hi',
+        landSizeAcres: 4.0,
+        cropsGrown: ['wheat', 'paddy', 'mustard'],
+        preferredMandis: ['patna_city'],
+        notificationChannel: 'whatsapp',
+        consentGivenAt: new Date().toISOString(),
+        dpdpConsent: true,
+        createdAt: new Date().toISOString(),
+      };
+      existingUsers[userKey] = user;
+      localStorage.setItem('mandisetu_registered_users', JSON.stringify(existingUsers));
+    }
+
+    localStorage.setItem(USER_SESSION_KEY, JSON.stringify(user));
+    return user;
+  },
+
   updateProfile: (updatedData) => {
     const currentUser = authService.getCurrentUser();
     if (!currentUser) throw new Error('Not authenticated');
