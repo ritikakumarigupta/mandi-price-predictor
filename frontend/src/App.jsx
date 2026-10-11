@@ -13,7 +13,10 @@ import { NearbyMandiPage } from './pages/NearbyMandiPage';
 import { CropComparePage } from './pages/CropComparePage';
 import { AlertsPage } from './pages/AlertsPage';
 import { KisanSupportPage } from './pages/KisanSupportPage';
+import { AccountPage } from './pages/AccountPage';
+import { AdminPage } from './pages/AdminPage';
 import { HelpfulFeedbackWidget } from './components/common/HelpfulFeedbackWidget';
+import { GovernmentFooter } from './components/common/GovernmentFooter';
 
 function AppContent() {
   const [activeTab, setActiveTab] = useState('home');
@@ -64,6 +67,15 @@ function AppContent() {
         {activeTab === 'compare' && <CropComparePage />}
         {activeTab === 'alerts' && <AlertsPage />}
         {activeTab === 'support' && <KisanSupportPage />}
+        {activeTab === 'account' && (
+          <AccountPage 
+            onNavigateToDashboard={handleNavigateToDashboard}
+            onNavigateToAdmin={() => setActiveTab('admin')}
+          />
+        )}
+        {activeTab === 'admin' && (
+          <AdminPage onBackToApp={() => setActiveTab('home')} />
+        )}
       </main>
 
       {/* Global Was This Helpful Farmer Feedback Widget */}
@@ -76,19 +88,11 @@ function AppContent() {
         onSelect={handleCommandSelect}
       />
 
-      {/* Footer */}
-      <footer className="w-full py-8 px-4 sm:px-6 lg:px-8 border-t border-white/20 glass-panel bg-white/20 dark:bg-slate-950/40 backdrop-blur-md mt-auto">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
-          <div>
-            <span className="font-bold text-slate-800 dark:text-slate-200">MandiSetu</span> — AI Agritech Platform.
-            Data synced from data.gov.in & Agmarknet.
-          </div>
-          <div className="flex items-center gap-6">
-            <span>Forecasts are guidance, not a guarantee.</span>
-            <span>Made for Indian Farmers 🌾</span>
-          </div>
-        </div>
-      </footer>
+      {/* Professional Government Resources Footer */}
+      <GovernmentFooter onNavigateTab={(tab) => {
+        setActiveTab(tab);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }} />
     </div>
   );
 }
