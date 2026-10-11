@@ -11,7 +11,9 @@ import {
   Bell, 
   Layers, 
   Sparkles,
-  Command
+  Command,
+  LifeBuoy,
+  UserCheck
 } from 'lucide-react';
 import { useTheme } from '../../hooks/useTheme';
 import { useLanguage } from '../../hooks/useLanguage';
@@ -29,6 +31,8 @@ export const GlassNavbar = ({ activeTab, onSelectTab, onOpenCommandPalette }) =>
     { id: 'nearby', label: t.nav.nearby, icon: MapPin },
     { id: 'compare', label: t.nav.compare, icon: Layers },
     { id: 'alerts', label: t.nav.alerts, icon: Bell },
+    { id: 'support', label: t.nav.support || 'किसान सहायता', icon: LifeBuoy },
+    { id: 'account', label: t.nav.account || 'मेरा खाता', icon: UserCheck },
   ];
 
   const handleNavClick = (id) => {

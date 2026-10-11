@@ -21,6 +21,9 @@ export const translations = {
       nearby: 'All-India Mandi Map',
       compare: 'Compare Crops',
       alerts: 'Price Alerts',
+      support: 'Kisan Support',
+      account: 'My Account',
+      admin: 'Admin Portal',
     },
     hero: {
       badge: 'All-India APMC Real-time Sync',
@@ -60,6 +63,9 @@ export const translations = {
       nearby: 'अखिल भारतीय मंडी नक्शा',
       compare: 'फसल तुलना',
       alerts: 'भाव अलर्ट',
+      support: 'किसान सहायता',
+      account: 'मेरा खाता',
+      admin: 'प्रशासन (Admin)',
     },
     hero: {
       badge: 'अखिल भारतीय एगमार्कनेट लाइव समन्वय',
@@ -99,6 +105,9 @@ export const translations = {
       nearby: 'ਆਲ-ਇੰਡੀਆ ਮੰਡੀ ਨਕਸ਼ਾ',
       compare: 'ਫ਼ਸਲ ਤੁਲਨਾ',
       alerts: 'ਰੇਟ ਅਲਰਟ',
+      support: 'ਕਿਸਾਨ ਸਹਾਇਤਾ',
+      account: 'ਮੇਰਾ ਖਾਤਾ',
+      admin: 'ਐਡਮਿਨ',
     },
     hero: {
       badge: 'ਸਰਕਾਰੀ ਏਗਮਾਰਕਨੇਟ ਲਾਈਵ ਡੇਟਾ',
@@ -138,6 +147,9 @@ export const translations = {
       nearby: 'अखिल भारतीय बाजार नकाशा',
       compare: 'पीक तुलना',
       alerts: 'भाव अलर्ट',
+      support: 'शेतकरी मदत',
+      account: 'माझे खाते',
+      admin: 'प्रशासन',
     },
     hero: {
       badge: 'अखिल भारतीय ॲगमार्कनेट थेट समन्वय',

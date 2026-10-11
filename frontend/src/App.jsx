@@ -12,6 +12,8 @@ import { PriceTrendPage } from './pages/PriceTrendPage';
 import { NearbyMandiPage } from './pages/NearbyMandiPage';
 import { CropComparePage } from './pages/CropComparePage';
 import { AlertsPage } from './pages/AlertsPage';
+import { KisanSupportPage } from './pages/KisanSupportPage';
+import { HelpfulFeedbackWidget } from './components/common/HelpfulFeedbackWidget';
 
 function AppContent() {
   const [activeTab, setActiveTab] = useState('home');
@@ -61,7 +63,11 @@ function AppContent() {
         {activeTab === 'nearby' && <NearbyMandiPage />}
         {activeTab === 'compare' && <CropComparePage />}
         {activeTab === 'alerts' && <AlertsPage />}
+        {activeTab === 'support' && <KisanSupportPage />}
       </main>
+
+      {/* Global Was This Helpful Farmer Feedback Widget */}
+      <HelpfulFeedbackWidget />
 
       {/* Global Command Palette (Ctrl+K) */}
       <CommandPalette
