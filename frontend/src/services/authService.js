@@ -168,13 +168,16 @@ export const authService = {
     return user;
   },
 
-  loginWithGoogle: async (googleUser = null) => {
-    // Default simulated Google profile or user-provided Google OAuth payload
-    const profile = googleUser || {
-      id: 'goog_' + Date.now(),
-      email: 'kisan.setu.user@gmail.com',
-      name: 'किसान मित्र (Google User)',
-      avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80',
+  loginWithGoogle: async (googleUser) => {
+    if (!googleUser || !googleUser.email) {
+      throw new Error('कृपया एक वैध Google खाता चुनें (Please select a valid Google account)');
+    }
+
+    const profile = {
+      id: googleUser.id || 'goog_' + Date.now(),
+      email: googleUser.email,
+      name: googleUser.name || googleUser.email.split('@')[0],
+      avatar: googleUser.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80',
     };
 
     const existingUsers = JSON.parse(localStorage.getItem('mandisetu_registered_users') || '{}');
