@@ -124,13 +124,15 @@ export const MOCK_MANDIS = {
   ],
 };
 
-// All Major Agmarknet / data.gov.in Commodities with HD Web Imagery
+// All Major Agmarknet / data.gov.in Commodities with HD Web Imagery & Official MSP (2024-25)
 export const MOCK_CROPS = [
   { 
     id: 'wheat', 
     name: 'Wheat (गेहूं)', 
     category: 'Cereals', 
     basePrice: 2450, 
+    msp: 2275,
+    mspYear: '2024-25',
     icon: '🌾',
     image: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=400&q=80'
   },
@@ -139,6 +141,8 @@ export const MOCK_CROPS = [
     name: 'Paddy / Rice (धान / चावल)', 
     category: 'Cereals', 
     basePrice: 2280, 
+    msp: 2300,
+    mspYear: '2024-25',
     icon: '🍚',
     image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=400&q=80'
   },
@@ -147,6 +151,8 @@ export const MOCK_CROPS = [
     name: 'Onion (प्याज)', 
     category: 'Vegetables', 
     basePrice: 1850, 
+    msp: null, // Perishable / Horticultural (No MSP)
+    mspYear: null,
     icon: '🧅',
     image: 'https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?auto=format&fit=crop&w=400&q=80'
   },
@@ -155,6 +161,8 @@ export const MOCK_CROPS = [
     name: 'Potato (आलू)', 
     category: 'Vegetables', 
     basePrice: 1420, 
+    msp: null,
+    mspYear: null,
     icon: '🥔',
     image: 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=400&q=80'
   },
@@ -163,6 +171,8 @@ export const MOCK_CROPS = [
     name: 'Mustard (सरसों)', 
     category: 'Oilseeds', 
     basePrice: 5350, 
+    msp: 5650,
+    mspYear: '2024-25',
     icon: '🌻',
     image: 'https://images.unsplash.com/photo-1534073828943-f801091bb18c?auto=format&fit=crop&w=400&q=80'
   },
@@ -171,6 +181,8 @@ export const MOCK_CROPS = [
     name: 'Maize (मक्का)', 
     category: 'Cereals', 
     basePrice: 2150, 
+    msp: 2225,
+    mspYear: '2024-25',
     icon: '🌽',
     image: 'https://images.unsplash.com/photo-1551754655-cd27e38d2076?auto=format&fit=crop&w=400&q=80'
   },
@@ -179,6 +191,8 @@ export const MOCK_CROPS = [
     name: 'Tomato (टमाटर)', 
     category: 'Vegetables', 
     basePrice: 2100, 
+    msp: null,
+    mspYear: null,
     icon: '🍅',
     image: 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=400&q=80'
   },
@@ -187,6 +201,8 @@ export const MOCK_CROPS = [
     name: 'Garlic (लहसुन)', 
     category: 'Spices', 
     basePrice: 9400, 
+    msp: null,
+    mspYear: null,
     icon: '🧄',
     image: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=400&q=80'
   },
@@ -195,6 +211,8 @@ export const MOCK_CROPS = [
     name: 'Bengal Gram / Chana (चना)', 
     category: 'Pulses', 
     basePrice: 5850, 
+    msp: 5440,
+    mspYear: '2024-25',
     icon: '🫘',
     image: 'https://images.unsplash.com/photo-1515543237350-b3eea1ec8082?auto=format&fit=crop&w=400&q=80'
   },
@@ -203,6 +221,8 @@ export const MOCK_CROPS = [
     name: 'Soyabean (सोयाबीन)', 
     category: 'Oilseeds', 
     basePrice: 4650, 
+    msp: 4892,
+    mspYear: '2024-25',
     icon: '🌱',
     image: 'https://images.unsplash.com/photo-1599305090598-fe179d501227?auto=format&fit=crop&w=400&q=80'
   },
@@ -211,6 +231,8 @@ export const MOCK_CROPS = [
     name: 'Cotton (कपास)', 
     category: 'Commercial', 
     basePrice: 7100, 
+    msp: 7121,
+    mspYear: '2024-25',
     icon: '☁️',
     image: 'https://images.unsplash.com/photo-1606041008023-472dfb5e530f?auto=format&fit=crop&w=400&q=80'
   },
@@ -219,6 +241,8 @@ export const MOCK_CROPS = [
     name: 'Sugarcane (गन्ना)', 
     category: 'Commercial', 
     basePrice: 380, 
+    msp: 340, // FRP (Fair and Remunerative Price)
+    mspYear: '2024-25 (FRP)',
     icon: '🎋',
     image: 'https://images.unsplash.com/photo-1527842891421-42eec6e703ea?auto=format&fit=crop&w=400&q=80'
   },

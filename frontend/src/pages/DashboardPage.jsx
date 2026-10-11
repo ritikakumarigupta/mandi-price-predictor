@@ -205,6 +205,8 @@ export const DashboardPage = ({ searchParams, onBack }) => {
           price={data?.today?.modalPrice}
           isHighlight={true}
           changePct={data?.today?.changePct}
+          msp={data?.msp}
+          mspYear={data?.mspYear}
           subtitle="Official baseline for farmer settlement"
         />
         <PriceCard
